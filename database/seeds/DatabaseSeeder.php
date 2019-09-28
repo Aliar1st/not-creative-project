@@ -33,25 +33,43 @@ class DatabaseSeeder extends Seeder
             'properties' => '...'
         ]);
 
+        \App\Product::create([
+            'id' => 4,
+            'name' => 'Крышка',
+            'properties' => '...'
+        ]);
+
+        \App\Product::create([
+            'id' => 5,
+            'name' => 'Корпус',
+            'properties' => '...'
+        ]);
+
+        \App\Product::create([
+            'id' => 3,
+            'name' => 'Наклейка',
+            'properties' => '...'
+        ]);
+
         \App\Part::create([
             'id' => 1,
-            'name' => 'Крышка',
             'number' => 1,
-            'product_id' => 1
+            'parent_product_id' => 1,
+            'child_product_id' => 3,
         ]);
 
         \App\Part::create([
             'id' => 2,
-            'name' => 'Корпус',
             'number' => 2,
-            'product_id' => 1
+            'parent_product_id' => 1,
+            'child_product_id' => 4,
         ]);
 
         \App\Part::create([
             'id' => 3,
-            'name' => 'Наклейка',
             'number' => 3,
-            'product_id' => 1
+            'parent_product_id' => 1,
+            'child_product_id' => 5,
         ]);
 
         \App\PersonProduct::create([

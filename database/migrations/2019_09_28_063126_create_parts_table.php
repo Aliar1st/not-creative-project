@@ -15,12 +15,16 @@ class CreatePartsTable extends Migration
     {
         Schema::create('parts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
             $table->integer('number');
-            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('parent_product_id');
+            $table->unsignedBigInteger('child_product_id');
             $table->timestamps();
 
-            $table->foreign('product_id')
+            $table->foreign('parent_product_id')
+                ->references('id')->on('products')
+                ->onDelete('cascade');
+
+            $table->foreign('child_product_id')
                 ->references('id')->on('products')
                 ->onDelete('cascade');
         });

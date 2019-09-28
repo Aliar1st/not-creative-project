@@ -12,7 +12,10 @@ class Product extends Model
         $product = Product::findOrFail($id);
         $parts = [];
         if(isset($product)){
-            $parts = DB::table('parts')->where('product_id', $product->id)->orderBy('number')->get();
+            $parts = DB::table('parts')
+                ->where('parent_product_id', $product->id)
+                ->orderBy('number')
+                ->get();
         }
 
         $result = [

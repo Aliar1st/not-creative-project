@@ -3,6 +3,7 @@
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +15,13 @@ use Illuminate\Support\Facades\DB;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Route::get('/login', '');
+
 Route::group(['middleware' => ['auth:api']], function () {
 
-    Route::get('/products', function (){
-        $user = auth()->user();
-        return Product::getProducts($user->getAuthIdentifier());
-    });
+    Route::get('/products', 'ProductController@getProducts');
 
-    Route::get('/products/{id}', function ($id){
-        return \App\Product::productInfo($id);
-    });
+    Route::get('/products/{id}', 'ProductController@getProductInfo');
 
 });
 
